@@ -249,3 +249,18 @@ ul.nav.navbar-nav.navbar-right {
     margin-top: 28px;
     float: left;
 }
+
+#body table
+{
+    margin:0 auto;
+    margin-top: 70px;
+    position:relative;
+    bottom:50px;
+}
+table td,th
+{
+    padding:20px;
+    border: solid #9fa8b0 1px;
+    border-collapse:collapse;
+}
+

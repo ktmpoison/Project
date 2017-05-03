@@ -6,41 +6,37 @@ header("Location:index.php");
 error_reporting(0);
 include_once 'dbcon.php';
 include 'header.php';
-
-if(isset($_POST['submit']))
-{
-	$name = $_FILES['file']['name'];
-	$temp = $_FILES['file']['tmp_name'];
-
-	move_uploaded_file($temp,"uploads/".$name);
-	$url = "http://localhost:8000/Problem/uploads/$name";
-
-	$sql="INSERT INTO tbl_video(name,url) VALUES('".$name."','".$url."')";
-	$sql = $MySQLiconn->query($sql);
-}
 ?>
 
-	<div class="container">
-				<!-- Button to open the modal login form -->
-				
-			</div>
-	
-
-
-			<a href="videos.php">Videos</a>
-			<form action="index.php" method="POST" enctype="multipart/form-data">
-				<input type="file" name="file" />
-			    <input type="submit" name="submit" value="Upload!" />
-			</form>
-
-			<?php
-
-			if(isset($_POST['submit']))
-			{
-				echo "<br />".$name." has been uploaded";
-			}
-
-			?>
-
-			</body>
-			</html>
+<div id="body">
+	<form action="upload.php" method="post" enctype="multipart/form-data">
+	<input type="file" name="file" />
+	<button type="submit" name="btn-upload">upload</button>
+	</form>
+    <br /><br />
+    <?php
+	if(isset($_GET['success']))
+	{
+		?>
+        <label>File Uploaded Successfully...  <a href="view_video.php">click here to view file.</a></label>
+        <?php
+	}
+	else if(isset($_GET['fail']))
+	{
+		?>
+        <label>Problem While File Uploading !</label>
+        <?php
+	}
+	else
+	{
+		?>
+        <label>Try to upload any files(PDF, DOC, EXE, VIDEO, MP3, ZIP,etc...)</label>
+        <?php
+	}
+	?>
+</div>
+<div id="footer">
+<label>By Babin Subba</label>
+</div>
+</body>
+</html>
